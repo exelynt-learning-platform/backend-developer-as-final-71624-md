@@ -350,8 +350,13 @@ public class ReservationService {
 
     private void validateNoOverlappingReservation(ResourceEntity resource, LocalDateTime startTime, LocalDateTime endTime, Long reservationId) {
 
-        boolean overlapping = reservationRepository.existsOverlappingReservation(resource.getId(),
-                startTime, endTime, reservationId);
+        boolean overlapping = reservationRepository.existsOverlappingReservation(
+                resource.getId(),
+                startTime,
+                endTime,
+                null,
+                ReservationStatus.CANCELLED
+        );
 
         if (overlapping) {
             throw new IllegalStateException("Resource is already booked for the selected time");
