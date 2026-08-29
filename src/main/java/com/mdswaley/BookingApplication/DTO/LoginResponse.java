@@ -1,4 +1,7 @@
 package com.mdswaley.BookingApplication.DTO;
 
-public class LoginResponse {
+public record LoginResponse(
+        String token,
+        String type
+) {
 }
